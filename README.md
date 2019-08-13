@@ -25,7 +25,7 @@ package manager.
    
 4. Run the server
    ```
-   ./img2text [--port=<port_num>]
+   ./img2text [--host=<hostname>] [--port=<port_num>]
    ```
    
 5. Testing the application

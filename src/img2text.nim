@@ -32,12 +32,17 @@ router customRouter:
 
 proc main() =
   var port = Port(5000)
+  var host = "localhost"
   for kind, key, value in getopt(commandLineParams()):
     if kind == cmdLongOption and key == "port":
       port = Port(value.parseInt())
     elif kind == cmdShortOption and key == "p":
       port = Port(value.parseInt())
-  let ns = newSettings(port=port)
+    elif kind == cmdLongOption and key == "host":
+      host = value
+    elif kind == cmdShortOption and key == "h":
+      host = value
+  let ns = newSettings(port=port, bindAddr=host)
   var jester = initJester(customRouter, settings=ns)
   jester.serve()
 
